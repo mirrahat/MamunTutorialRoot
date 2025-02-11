@@ -4795,6 +4795,22 @@
         "runtime": {
           "lib/net7.0/ZstdSharp.dll": {}
         }
+      },
+      "MyInvoiceHistory/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Swashbuckle.AspNetCore": "6.4.0"
+        },
+        "compile": {
+          "bin/placeholder/MyInvoiceHistory.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyInvoiceHistory.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -13445,6 +13461,11 @@
         "zstdsharp.port.0.7.3.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "MyInvoiceHistory/1.0.0": {
+      "type": "project",
+      "path": "../MyInvoiceHistory/MyInvoiceHistory.csproj",
+      "msbuildProject": "../MyInvoiceHistory/MyInvoiceHistory.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -13462,6 +13483,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.7",
       "MongoDB.Driver >= 3.1.0",
+      "MyInvoiceHistory >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.IdentityModel.Tokens.Jwt >= 7.7.1",
@@ -13474,11 +13496,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\MamunTutorial\\MamunTutorial.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MamunTutorial\\MamunTutorial.csproj",
       "projectName": "MamunTutorial",
-      "projectPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorial\\MamunTutorial.csproj",
+      "projectPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MamunTutorial\\MamunTutorial.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorial\\obj\\",
+      "outputPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MamunTutorial\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -13494,7 +13516,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MyInvoiceHistory\\MyInvoiceHistory.csproj": {
+              "projectPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MyInvoiceHistory\\MyInvoiceHistory.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

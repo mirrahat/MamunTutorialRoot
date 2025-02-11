@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MamunTutorial", "MamunTutor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AI MATH GENERATOR SHAT", "..\AI MATH GENERATOR SHAT\AI MATH GENERATOR SHAT.csproj", "{9CE9592F-D68F-4ED9-B272-130875E935B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyInvoiceHistory", "..\MyInvoiceHistory\MyInvoiceHistory.csproj", "{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9CE9592F-D68F-4ED9-B272-130875E935B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CE9592F-D68F-4ED9-B272-130875E935B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CE9592F-D68F-4ED9-B272-130875E935B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
