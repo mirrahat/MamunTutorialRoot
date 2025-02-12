@@ -6,6 +6,7 @@ on:
       - 'MyInvoiceHistory/**'
     branches:
       - 401smtp  # Ensuring deployment happens only on 401smtp
+  workflow_dispatch:  # Enables the "Run Workflow" button in GitHub UI
 
 jobs:
   build-and-deploy:
