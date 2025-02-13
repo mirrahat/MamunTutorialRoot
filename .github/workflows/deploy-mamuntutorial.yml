@@ -8,6 +8,10 @@ on:
       - 401smtp  # Ensuring deployment happens only on 401smtp
   workflow_dispatch:  # Enables the "Run Workflow" button in GitHub UI
 
+permissions:
+  id-token: write  # ✅ Required for OIDC authentication
+  contents: read   # ✅ Required to read repo contents
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
