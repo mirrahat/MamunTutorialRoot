@@ -37,5 +37,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: MyInvoiceHistoryApp  # Replace with your Azure App Service name
+          resource-group-name: Mmauntutorial  # ✅ Added resource group
           slot-name: production
           package: MyInvoiceHistory/publish
