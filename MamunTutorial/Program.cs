@@ -129,10 +129,12 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
+
+    // ✅ Allow unauthenticated access to "/"
     endpoints.MapGet("/", async context =>
     {
         await context.Response.WriteAsync("Welcome to MyAspNetBackend API!");
-    });
+    }).AllowAnonymous(); // <-- Add this
 });
 
 app.Run();
