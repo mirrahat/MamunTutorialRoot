@@ -5,11 +5,11 @@ on:
     paths:
       - 'MyInvoiceHistory/**'
     branches:
-      - 401smtp  # Change if you are using a different branch
+      - 401smtp  # Change if using another branch
   workflow_dispatch:  # Allows manual execution from GitHub UI
 
 permissions:
-  contents: read   # ✅ Required for repository access
+  contents: read
 
 jobs:
   build-and-deploy:
@@ -36,7 +36,7 @@ jobs:
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
-          app-name: MyInvoiceHistoryApp  # Replace with your Azure App Service name
-          resource-group-name: Mmauntutorial  # ✅ Added resource group
+          app-name: MyInvoiceHistoryApp  # ✅ Your actual Azure App Service name
+          resource-group-name: MamunTutorial  # ✅ Correct resource group
           slot-name: production
           package: MyInvoiceHistory/publish
