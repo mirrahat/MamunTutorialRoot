@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "o3y+pQfD9BTK72UdmC6RF5T3ygwRBnXi8pBRV8/twmw=",
+  "Hash": "JCsoVQIFg9Z6o17RsB+AnN9CG3xYPUOcbNlkrQ0IZ3Y=",
   "Source": "MamunTutorial",
   "BasePath": "_content/MamunTutorial",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "MyInvoiceHistory",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Release;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Release;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],

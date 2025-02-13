@@ -347,3 +347,14 @@ C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\obj\Release\net8.0\re
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\obj\Release\net8.0\MamunTutorial.pdb
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\obj\Release\net8.0\MamunTutorial.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\obj\Release\net8.0\ref\MamunTutorial.dll
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\appsettings.MyInvoiceHistory.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\appsettings.MyInvoiceHistory.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\web.config
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\appsettings.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\appsettings.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\appsettings.MyInvoiceHistory.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\appsettings.MyInvoiceHistory.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\MamunTutorial.deps.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\MamunTutorial.runtimeconfig.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\MyInvoiceHistory.deps.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\bin\Release\net8.0\publish\MyInvoiceHistory.runtimeconfig.json
