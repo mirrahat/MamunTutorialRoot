@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MamunTutorial")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34e6925824f61289ed26b39fdb52dde6cdae88cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f727ffe93fdc2d6dcbf3b62763782ea8a0faf42")]
 [assembly: System.Reflection.AssemblyProductAttribute("MamunTutorial")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MamunTutorial")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
