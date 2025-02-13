@@ -117,7 +117,7 @@ var app = builder.Build();
 
 
 
-app.MapGet("/", () => "Hello! This is MyAspNetBackend API.");
+/*app.MapGet("/", () => "Hello! This is MyAspNetBackend API.");*/
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
