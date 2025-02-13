@@ -21,6 +21,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "9.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.7",
           "MongoDB.Driver": "3.1.0",
+          "MyInvoiceHistory": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "7.7.1",
@@ -3221,6 +3222,14 @@
             "fileVersion": "0.7.3.0"
           }
         }
+      },
+      "MyInvoiceHistory/1.0.0": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore": "6.4.0"
+        },
+        "runtime": {
+          "MyInvoiceHistory.dll": {}
+        }
       }
     }
   },
@@ -5245,6 +5254,11 @@
       "sha512": "sha512-U9Ix4l4cl58Kzz1rJzj5hoVTjmbx1qGMwzAcbv1j/d3NzrFaESIurQyg+ow4mivCgkE3S413y+U9k4WdnEIkRA==",
       "path": "zstdsharp.port/0.7.3",
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
+    },
+    "MyInvoiceHistory/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

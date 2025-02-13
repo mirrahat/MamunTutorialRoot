@@ -1,9 +1,5 @@
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.exe
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MamunTutorial.exe
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.deps.json
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.runtimeconfig.json
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\appsettings.MyInvoiceHistory.Development.json
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\appsettings.MyInvoiceHistory.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\web.config
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\web.config
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\appsettings.Development.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\appsettings.json
@@ -15,6 +11,14 @@ C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\Mamun
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\MamunTutorial.runtimeconfig.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\MyInvoiceHistory.deps.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\MyInvoiceHistory.runtimeconfig.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\appsettings.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\appsettings.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\appsettings.MyInvoiceHistory.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\appsettings.MyInvoiceHistory.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\MamunTutorial.deps.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\MamunTutorial.runtimeconfig.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\MyInvoiceHistory.deps.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\publish\publish\MyInvoiceHistory.runtimeconfig.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MamunTutorial.dll
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MamunTutorial.runtimeconfig.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MamunTutorial.pdb
@@ -315,6 +319,4 @@ C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\runtimes\win\
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.dll
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.pdb
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MamunTutorial.deps.json

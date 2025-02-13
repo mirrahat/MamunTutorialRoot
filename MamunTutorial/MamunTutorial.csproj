@@ -28,10 +28,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
-    <None Update="appsettings.Development.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </None>
+  
   </ItemGroup>
 
 
@@ -55,6 +52,7 @@
     <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.7.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.7.1" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>

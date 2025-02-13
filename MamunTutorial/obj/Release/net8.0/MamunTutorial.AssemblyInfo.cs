@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MamunTutorial")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fd7071172028cfd74f1641e806e2e412435f2f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16e8e40bb4e99785352b4a4e7089ece11bba5940")]
 [assembly: System.Reflection.AssemblyProductAttribute("MamunTutorial")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MamunTutorial")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,23 +1,11 @@
 {
   "Version": 1,
-  "Hash": "ug4+wxPLLo5fDCut2GVOrmoCMOq1o0JcDf+Z3pDNp1E=",
+  "Hash": "1UC9LoicvzHE/yuzN3ZzHY8aLJ/OgzR8awq80ni2ZNA=",
   "Source": "MamunTutorial",
   "BasePath": "_content/MamunTutorial",
   "Mode": "Default",
   "ManifestType": "Publish",
-  "ReferencedProjectsConfiguration": [
-    {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MyInvoiceHistory\\MyInvoiceHistory.csproj",
-      "Version": 2,
-      "Source": "MyInvoiceHistory",
-      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
-      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
-    }
-  ],
+  "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
       "Name": "MamunTutorial\\wwwroot",
