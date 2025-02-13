@@ -1,6 +1,5 @@
 ﻿using MamunTutorial.Data;
 using MamunTutorial.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ProducesAttribute("application/json"));
@@ -35,23 +34,21 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod()
-
               .AllowCredentials();
     });
 });
 
+// Enable logging of detailed security information
 IdentityModelEventSource.ShowPII = true;
+
 // Add authentication
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
-
-
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateAudience = true,
@@ -59,27 +56,15 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidateLifetime = true,
-
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
-    //options.UseSecurityTokenValidators = true;
-    options.Events = new JwtBearerEvents
-    {
-        OnAuthenticationFailed = context =>
-        {
-            // Log the exception details to understand why token validation is failing
-            Console.WriteLine($"Authentication failed: {context.Exception.Message}");
-            return Task.CompletedTask;
-        }
-    };
 
     options.Events = new JwtBearerEvents
     {
         OnAuthenticationFailed = context =>
         {
             Console.WriteLine($"Authentication failed: {context.Exception.Message}");
-            Console.WriteLine($"Error details: {context.Exception.StackTrace}");  // Log stack trace for more info
             return Task.CompletedTask;
         },
         OnTokenValidated = context =>
@@ -95,30 +80,22 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
+// Add authorization
 builder.Services.AddAuthorization(options => { });
 
+// Register services
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddTransient<IJwtService, JwtService>();
 
 var app = builder.Build();
 
-// Configure middleware
+// Configure error handling for better debugging
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+}
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
-
-
-// Force app to listen on Azure's assigned port
-
-    var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-    app.Urls.Add($"http://*:{port}");
-
-
-
-
-/*app.MapGet("/", () => "Hello! This is MyAspNetBackend API.");*/
-
+// Configure middleware order
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -126,15 +103,28 @@ app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Add Swagger (API Documentation)
+app.UseSwagger();
+app.UseSwaggerUI();
+
+// Force app to listen on Azure's assigned port
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://*:{port}");
+
+// Define routes
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 
-    // ✅ Allow unauthenticated access to "/"
-    endpoints.MapGet("/", async context =>
+    // ✅ Fix: Ensure only one "/"
+    if (!endpoints.DataSources.SelectMany(ds => ds.Endpoints).Any(e => e.DisplayName == "/"))
     {
-        await context.Response.WriteAsync("Welcome to MyAspNetBackend API!");
-    }).AllowAnonymous(); // <-- Add this
+        endpoints.MapGet("/", async context =>
+        {
+            await context.Response.WriteAsync("Welcome to MyAspNetBackend API!");
+        }).AllowAnonymous();
+    }
 });
 
 app.Run();
