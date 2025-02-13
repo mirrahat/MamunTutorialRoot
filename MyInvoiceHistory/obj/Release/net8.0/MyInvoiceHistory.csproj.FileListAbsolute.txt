@@ -1,5 +1,3 @@
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\appsettings.Development.json
-C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\appsettings.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\MyInvoiceHistory.exe
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\MyInvoiceHistory.deps.json
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\MyInvoiceHistory.runtimeconfig.json
@@ -31,3 +29,5 @@ C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\obj\Release\net8.0
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\obj\Release\net8.0\MyInvoiceHistory.pdb
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\obj\Release\net8.0\MyInvoiceHistory.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\obj\Release\net8.0\ref\MyInvoiceHistory.dll
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\appsettings.MyInvoiceHistory.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MyInvoiceHistory\bin\Release\net8.0\appsettings.MyInvoiceHistory.json

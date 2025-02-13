@@ -1,0 +1,11 @@
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.exe
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\appsettings.MyInvoiceHistory.Development.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\appsettings.MyInvoiceHistory.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.dll
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.deps.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.runtimeconfig.json
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\MyInvoiceHistory.pdb
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\Microsoft.OpenApi.dll
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\ASUS\source\repos\MamunTutorialRoot\MamunTutorial\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
