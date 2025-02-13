@@ -126,7 +126,13 @@ app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapGet("/", async context =>
+    {
+        await context.Response.WriteAsync("Welcome to MyAspNetBackend API!");
+    });
+});
 
 app.Run();
