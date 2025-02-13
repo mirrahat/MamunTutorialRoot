@@ -1,29 +1,41 @@
-name: Deploy to Azure
+name: Deploy MyInvoiceHistory to Azure
 
 on:
   push:
+    paths:
+      - 'MyInvoiceHistory/**'
     branches:
-      - main
+      - 401smtp  # Change if you are using a different branch
+  workflow_dispatch:  # Allows manual execution from GitHub UI
+
+permissions:
+  contents: read   # ✅ Required for repository access
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write  # Required for OIDC authentication
-      contents: read
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      - name: Azure Login
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Publish MyInvoiceHistory
+        run: |
+          cd MyInvoiceHistory
+          dotnet publish -c Release -o ./publish
+
+      - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          allow-no-subscriptions: true  # Optional, if you don't need subscription-level permissions
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Run Azure CLI command
-        run: az account show
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: MyInvoiceHistoryApp  # Replace with your Azure App Service name
+          slot-name: production
+          package: MyInvoiceHistory/publish
