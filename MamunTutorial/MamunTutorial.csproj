@@ -30,11 +30,7 @@
     </None>
   
   </ItemGroup>
-  <ItemGroup>
-    <None Update="appsettings.myinvoicehistory.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  
 
 
   <!-- Dependencies -->
