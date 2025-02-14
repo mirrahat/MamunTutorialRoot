@@ -17,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+app.MapGet("/", () => "Welcome to MyInvoiceHistory API!");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
