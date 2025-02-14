@@ -3,8 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("appsettings.MyInvoiceHistory.json", optional: true, reloadOnChange: true)
+   
+    .AddJsonFile("appsettings.MyInvoiceHistory.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
 builder.Services.AddControllers();
@@ -20,6 +20,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://*:{port}");
 
 app.UseHttpsRedirection();
 
