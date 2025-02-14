@@ -2,10 +2,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //var builder = WebApplication.CreateBuilder(args);
+
+
 builder.Configuration
-   
-    .AddJsonFile("appsettings.MyInvoiceHistory.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.myinvoicehistory.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
