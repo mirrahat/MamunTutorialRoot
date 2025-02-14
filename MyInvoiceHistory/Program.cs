@@ -19,11 +19,11 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 app.MapGet("/", () => "Welcome to MyInvoiceHistory API!");
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Add Swagger services
+app.UseSwagger();
+app.UseSwaggerUI();
+
+builder.Services.AddSwaggerGen();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://*:{port}");
 
