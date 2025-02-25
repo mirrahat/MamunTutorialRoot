@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MamunTutorial", "MamunTutorial.csproj", "{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyInvoiceHistory", "..\MyInvoiceHistory\MyInvoiceHistory.csproj", "{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BFF87D9-2DBE-499E-831D-AE9A399B83D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

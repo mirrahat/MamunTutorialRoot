@@ -8,13 +8,34 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    WebRootPath = "wwwroot"
+});
 
-// Add services to the container
+// ✅ Detect if running inside Docker
+var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+
+// ✅ Ensure the app runs on HTTP only inside Docker
+builder.WebHost.ConfigureKestrel(options =>
+{
+    if (isDocker)
+    {
+        options.ListenAnyIP(8080); // ✅ Use HTTP inside Docker
+    }
+    else
+    {
+        options.ListenAnyIP(5000); // ✅ HTTP for local development
+        options.ListenAnyIP(5001, listenOptions => listenOptions.UseHttps()); // ✅ HTTPS for local development
+    }
+});
+
+// ✅ Add services to the container
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ProducesAttribute("application/json"));
     options.Filters.Add(new ConsumesAttribute("application/json"));
+
     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
     options.Filters.Add(new AuthorizeFilter(policy));
 }).AddXmlSerializerFormatters();
@@ -22,11 +43,11 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add DbContext
+// ✅ Add DbContext with SQL Server
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add CORS policy
+// ✅ Configure CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -38,10 +59,10 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Enable logging of detailed security information
+// ✅ Enable detailed security logs
 IdentityModelEventSource.ShowPII = true;
 
-// Add authentication
+// ✅ Add authentication
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -80,51 +101,35 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Add authorization
-builder.Services.AddAuthorization(options => { });
+// ✅ Add authorization
+builder.Services.AddAuthorization();
 
-// Register services
+// ✅ Register services
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddTransient<IJwtService, JwtService>();
 
 var app = builder.Build();
 
-// Configure error handling for better debugging
+// ✅ Middleware setup
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/error");
+    app.UseExceptionHandler("/error"); // Better error handling
 }
 
-// Configure middleware order
-app.UseHttpsRedirection();
+// ✅ Remove HTTPS Redirection inside Docker
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Add Swagger (API Documentation)
+// ✅ Add Swagger (API Documentation)
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Force app to listen on Azure's assigned port
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Urls.Add($"http://*:{port}");
+// ✅ Define routes
+app.MapControllers();
+app.MapGet("/", () => "Hello, Docker!").AllowAnonymous(); // Fix homepage route
 
-// Define routes
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-
-    // ✅ Fix: Ensure only one "/"
-    if (!endpoints.DataSources.SelectMany(ds => ds.Endpoints).Any(e => e.DisplayName == "/"))
-    {
-        endpoints.MapGet("/", async context =>
-        {
-            await context.Response.WriteAsync("Welcome to MyAspNetBackend API!");
-        }).AllowAnonymous();
-    }
-});
-
+// ✅ Run the application
 app.Run();
