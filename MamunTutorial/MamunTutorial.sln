@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MamunTutorial", "MamunTutorial.csproj", "{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{18397301-C46B-448A-B75F-A2EB259AA63E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MamuTutorial.Payment", "..\MamuTutorial.Payment\MamuTutorial.Payment.csproj", "{9469A643-7E72-449F-8438-2F5152D492B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C94BE9AF-B4D4-4001-A146-B25B817AEB0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9469A643-7E72-449F-8438-2F5152D492B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9469A643-7E72-449F-8438-2F5152D492B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9469A643-7E72-449F-8438-2F5152D492B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9469A643-7E72-449F-8438-2F5152D492B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9469A643-7E72-449F-8438-2F5152D492B0} = {18397301-C46B-448A-B75F-A2EB259AA63E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EAD17737-1714-481F-B6CD-8DBBE1A576DF}

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -21,12 +22,12 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     if (isDocker)
     {
-        options.ListenAnyIP(8080); // ✅ Use HTTP inside Docker
+        options.ListenAnyIP(8080); // Use HTTP inside Docker
     }
     else
     {
-        options.ListenAnyIP(5000); // ✅ HTTP for local development
-        options.ListenAnyIP(5001, listenOptions => listenOptions.UseHttps()); // ✅ HTTPS for local development
+        options.ListenAnyIP(5000); // HTTP for local development
+        options.ListenAnyIP(5001, listenOptions => listenOptions.UseHttps()); // HTTPS for local development
     }
 });
 
@@ -70,7 +71,14 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters()
+    // Ensure the JWT key is not null or empty
+    var jwtKey = builder.Configuration["Jwt:Key"];
+    if (string.IsNullOrEmpty(jwtKey))
+    {
+        throw new InvalidOperationException("JWT Key is not configured in the application settings.");
+    }
+
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateAudience = true,
         ValidAudience = builder.Configuration["Jwt:Audience"],
@@ -78,7 +86,7 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
     };
 
     options.Events = new JwtBearerEvents
@@ -104,7 +112,7 @@ builder.Services.AddAuthentication(options =>
 // ✅ Add authorization
 builder.Services.AddAuthorization();
 
-// ✅ Register services
+// ✅ Register custom services
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddTransient<IJwtService, JwtService>();
 
@@ -113,10 +121,9 @@ var app = builder.Build();
 // ✅ Middleware setup
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/error"); // Better error handling
+    app.UseExceptionHandler("/error"); // Better error handling for production
 }
 
-// ✅ Remove HTTPS Redirection inside Docker
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors();
@@ -129,7 +136,7 @@ app.UseSwaggerUI();
 
 // ✅ Define routes
 app.MapControllers();
-app.MapGet("/", () => "Hello, Docker!").AllowAnonymous(); // Fix homepage route
+app.MapGet("/", () => "Hello, Docker!").AllowAnonymous();
 
 // ✅ Run the application
 app.Run();
