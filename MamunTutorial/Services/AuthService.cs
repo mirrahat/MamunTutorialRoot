@@ -19,7 +19,7 @@ namespace MamunTutorial.Services
         {
             // Check if the identifier is email, phone number, or username
             var user = await _dBcontext.UsersInfo
-                .FirstOrDefaultAsync(u =>  u.Email == identifier || u.PhoneNumber == identifier);
+                .FirstOrDefaultAsync(u =>  u.Email == identifier);
 
             // If user doesn't exist or password doesn't match, return null (invalid credentials)
             if (user == null || user.Password != password)

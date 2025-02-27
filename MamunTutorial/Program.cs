@@ -17,17 +17,21 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 // ✅ Detect if running inside Docker
 var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
 
-// ✅ Ensure the app runs on HTTP only inside Docker
+// ✅ Read ports from environment variables (useful for Docker & local)
+var httpPort = builder.Configuration["ASPNETCORE_HTTP_PORT"] ?? "5276";
+var httpsPort = builder.Configuration["ASPNETCORE_HTTPS_PORT"] ?? "7287";
+
+// ✅ Ensure the app runs on the correct ports
 builder.WebHost.ConfigureKestrel(options =>
 {
     if (isDocker)
     {
-        options.ListenAnyIP(8080); // Use HTTP inside Docker
+        options.ListenAnyIP(8080); // Docker (containerized)
     }
     else
     {
-        options.ListenAnyIP(5000); // HTTP for local development
-        options.ListenAnyIP(5001, listenOptions => listenOptions.UseHttps()); // HTTPS for local development
+        options.ListenAnyIP(int.Parse(httpPort)); // Use HTTP from config
+        options.ListenAnyIP(int.Parse(httpsPort), listenOptions => listenOptions.UseHttps()); // Use HTTPS from config
     }
 });
 

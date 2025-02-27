@@ -1,23 +1,43 @@
-﻿namespace MamunTutorial.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MamunTutorial.Models
 {
     public class Payment
     {
-        public Guid PaymentId { get; set; } // Primary Key
-        public Guid BillingId { get; set; } // Foreign Key to Billing Table
-        public Guid StudentId { get; set; } // Foreign Key to Student Table
+        public int Id { get; set; }
 
-        public decimal TotalAmount { get; set; } // Total amount to be paid
-        public DateTime PaymentDate { get; set; } // Date of payment
-        public decimal CreditPayment { get; set; } // Payment made through credit
-        public decimal CashPayment { get; set; } // Payment made through cash
-        public decimal Due { get; set; } // Remaining due after payment
+        [Required]
+        public int StudentId { get; set; }
 
-        public string PaymentMethod { get; set; } // E.g., Credit Card, Cash, Bank Transfer
-        public string PaymentStatus { get; set; } // E.g., "Completed", "Pending", "Failed"
-        public string TransactionId { get; set; } // Unique transaction identifier for the payment
-        public string PaymentReference { get; set; } // Any reference or notes related to the payment
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
 
-        public DateTime CreatedDate { get; set; } // Date when the payment was created
-        public DateTime? ModifiedDate { get; set; } // Date when the payment was last modified
+        [Required]
+        public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        [StringLength(50)]
+        public string PaymentMethod { get; set; }
+
+        [StringLength(100)]
+        public string TransactionId { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Status { get; set; } = "Pending";
+
+        [StringLength(50)]
+        public string Month { get; set; }
+
+        [StringLength(10)]
+        public string Year { get; set; }
+
+        [StringLength(500)]
+        public string Description { get; set; }
+
+        // Navigation property
+        public virtual Student Student { get; set; }
     }
 }

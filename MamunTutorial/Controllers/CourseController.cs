@@ -7,24 +7,24 @@ namespace MamunTutorial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentController : ControllerBase
+    public class CourseController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
 
-        public StudentController(ApplicationDBContext context)
+        public CourseController(ApplicationDBContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+        public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
             try
             {
-                var students = await _context.Students
-                    .Include(s => s.User)
+                var courses = await _context.Courses
+                    .Include(c => c.Teacher)
                     .ToListAsync();
-                return Ok(students);
+                return Ok(courses);
             }
             catch (Exception ex)
             {
@@ -33,20 +33,20 @@ namespace MamunTutorial.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        public async Task<ActionResult<Course>> GetCourse(int id)
         {
             try
             {
-                var student = await _context.Students
-                    .Include(s => s.User)
-                    .FirstOrDefaultAsync(s => s.Id == id);
+                var course = await _context.Courses
+                    .Include(c => c.Teacher)
+                    .FirstOrDefaultAsync(c => c.Id == id);
 
-                if (student == null)
+                if (course == null)
                 {
-                    return NotFound($"Student with ID {id} not found");
+                    return NotFound($"Course with ID {id} not found");
                 }
 
-                return Ok(student);
+                return Ok(course);
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace MamunTutorial.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Student>> CreateStudent(Student student)
+        public async Task<ActionResult<Course>> CreateCourse(Course course)
         {
             try
             {
@@ -64,10 +64,10 @@ namespace MamunTutorial.Controllers
                     return BadRequest(ModelState);
                 }
 
-                _context.Students.Add(student);
+                _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetStudent), new { id = student.Id }, student);
+                return CreatedAtAction(nameof(GetCourse), new { id = course.Id }, course);
             }
             catch (Exception ex)
             {
@@ -76,9 +76,9 @@ namespace MamunTutorial.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStudent(int id, Student student)
+        public async Task<IActionResult> UpdateCourse(int id, Course course)
         {
-            if (id != student.Id)
+            if (id != course.Id)
             {
                 return BadRequest("ID mismatch");
             }
@@ -90,24 +90,16 @@ namespace MamunTutorial.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var existingStudent = await _context.Students.FindAsync(id);
-                if (existingStudent == null)
+                var existingCourse = await _context.Courses.FindAsync(id);
+                if (existingCourse == null)
                 {
-                    return NotFound($"Student with ID {id} not found");
+                    return NotFound($"Course with ID {id} not found");
                 }
 
-                _context.Entry(existingStudent).CurrentValues.SetValues(student);
+                _context.Entry(existingCourse).CurrentValues.SetValues(course);
                 await _context.SaveChangesAsync();
 
                 return NoContent();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
             }
             catch (Exception ex)
             {
@@ -116,17 +108,17 @@ namespace MamunTutorial.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
+        public async Task<IActionResult> DeleteCourse(int id)
         {
             try
             {
-                var student = await _context.Students.FindAsync(id);
-                if (student == null)
+                var course = await _context.Courses.FindAsync(id);
+                if (course == null)
                 {
-                    return NotFound($"Student with ID {id} not found");
+                    return NotFound($"Course with ID {id} not found");
                 }
 
-                _context.Students.Remove(student);
+                _context.Courses.Remove(course);
                 await _context.SaveChangesAsync();
 
                 return NoContent();
@@ -135,11 +127,6 @@ namespace MamunTutorial.Controllers
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
-        }
-
-        private bool StudentExists(int id)
-        {
-            return _context.Students.Any(e => e.Id == id);
         }
     }
 }

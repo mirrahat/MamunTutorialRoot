@@ -1,31 +1,46 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MamunTutorial.Models
 {
-    public class Students
+    public class Student
     {
-        [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string FirstName { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        [StringLength(100)]
+        public string Name { get; set; }
 
         [Required]
-        public string RollNumber { get; set; }
+        [Phone]
+        [StringLength(20)]
+        public string Phone { get; set; }
+
+        [StringLength(200)]
+        public string Address { get; set; }
 
         [Required]
-        public string ClassName { get; set; }
-
-        // New fields
-        [Required]
-        [Phone] // Validation for phone number
-        public string PhoneNumber { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
-        [EmailAddress] // Validation for email address
-        public string Email { get; set; }
+        public DateTime EnrollmentDate { get; set; } = DateTime.UtcNow;
+
+        [StringLength(50)]
+        public string Status { get; set; } = "Active";
+
+        [StringLength(500)]
+        public string Notes { get; set; }
+
+        // Navigation property
+        public virtual User User { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+
+        public Student()
+        {
+            Payments = new HashSet<Payment>();
+        }
     }
 }

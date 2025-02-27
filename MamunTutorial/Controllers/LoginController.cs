@@ -40,7 +40,7 @@ namespace MamunTutorial.Controllers
             {
                 Email = user.Email,
                 Role = user.Role,
-                UserId = user.UserId
+                Id = user.Id
             };
 
             var test2 = _jwtService.CreateJwtToken(userInfo);

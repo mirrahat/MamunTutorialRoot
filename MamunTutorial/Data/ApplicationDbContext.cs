@@ -11,7 +11,7 @@ namespace MamunTutorial.Data
         {
 
         }
-        public DbSet<Students> Students { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Marks> Marks { get; set; }
         public DbSet<Attendance> Attendence { get; set; }
 
@@ -24,5 +24,6 @@ namespace MamunTutorial.Data
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<User> UsersInfo { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }

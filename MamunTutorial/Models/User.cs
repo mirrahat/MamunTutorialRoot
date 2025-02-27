@@ -1,30 +1,41 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MamunTutorial.Models
 {
     public class User
     {
-        [Key]
-        public Guid UserId { get; set; } // Primary Key
-
+        public int Id { get; set; }
 
         [Required]
-        public string Password { get; set; } // Encrypted Password
-
-        [Required]
-        public string Role { get; set; } // Role: "Student" or "Teacher"
+        [StringLength(50)]
+        public string UserName { get; set; }
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; } // Email Address (For dynamic validation)
+        [StringLength(100)]
+        public string Email { get; set; }
 
         [Required]
-        [Phone]
-        public string PhoneNumber { get; set; } // Phone Number (For dynamic validation)
+        public string Password { get; set; }
 
-        public string? RefreshToken { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string Role { get; set; } = "Student";
 
-        public DateTime? RefreshTokenExpirationDateTime { get; set; }
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public DateTime? LastLogin { get; set; }
+
+        [StringLength(200)]
+        public string ProfilePicture { get; set; }
+
+        [StringLength(500)]
+        public string Notes { get; set; }
+
+        public string RefreshToken { get; set; }
+        public DateTime RefreshTokenExpirationDateTime { get; set; }
+
     }
 }

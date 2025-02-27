@@ -1,111 +1,207 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MamunTutorial.Data;
 using MamunTutorial.Models;
-using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MamunTutorial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
 
-        public UsersController(ApplicationDBContext context)
+        public UserController(ApplicationDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
-        [HttpGet]
+       /* [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.UsersInfo.ToListAsync();
-        }
-
-
-        [Authorize]
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(Guid id)
-        {
-            var user = await _context.UsersInfo.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, User user)
-        {
-            if (id != user.UserId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
             try
             {
+                var users = await _context.Users.ToListAsync();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }*/
+
+       /* [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(id);
+
+                if (user == null)
+                {
+                    return NotFound($"User with ID {id} not found");
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }*/
+
+       /* [HttpPost("register")]
+        public async Task<ActionResult<User>> Register(RegisterModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                if (!IsValidEmail(model.Email))
+                {
+                    return BadRequest("Invalid email format");
+                }
+
+                if (await _context.Users.AnyAsync(u => u.Email == model.Email))
+                {
+                    return BadRequest("Email already registered");
+                }
+
+                var hashedPassword = HashPassword(model.Password);
+
+                var user = new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    Password = hashedPassword,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                _context.Users.Add(user);
                 await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
-
-            return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login(LoginModel model)
         {
-            _context.UsersInfo.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
-        }
-
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
-        {
-            var user = await _context.UsersInfo.FindAsync(id);
-            if (user == null)
+            try
             {
-                return NotFound();
+                var user = await _context.Users
+                    .FirstOrDefaultAsync(u => u.Email == model.Email);
+
+                if (user == null)
+                {
+                    return Unauthorized("Invalid credentials");
+                }
+
+                var hashedPassword = HashPassword(model.Password);
+                if (user.Password != hashedPassword)
+                {
+                    return Unauthorized("Invalid credentials");
+                }
+
+                // TODO: Generate and return JWT token
+                return Ok(user);
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }*/
 
-            _context.UsersInfo.Remove(user);
-            await _context.SaveChangesAsync();
+       /* [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UpdateUserModel model)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                {
+                    return NotFound($"User with ID {id} not found");
+                }
 
-            return NoContent();
+                if (!string.IsNullOrEmpty(model.Email) && model.Email != user.Email)
+                {
+                    if (!IsValidEmail(model.Email))
+                    {
+                        return BadRequest("Invalid email format");
+                    }
+
+                    if (await _context.Users.AnyAsync(u => u.Email == model.Email))
+                    {
+                        return BadRequest("Email already in use");
+                    }
+
+                    user.Email = model.Email;
+                }
+
+                if (!string.IsNullOrEmpty(model.UserName))
+                {
+                    user.UserName = model.UserName;
+                }
+
+                if (!string.IsNullOrEmpty(model.Password))
+                {
+                    user.Password = HashPassword(model.Password);
+                }
+
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }*/
+
+       /* [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                {
+                    return NotFound($"User with ID {id} not found");
+                }
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }*/
+
+        private bool IsValidEmail(string email)
+        {
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern);
         }
 
-        private bool UserExists(Guid id)
+        private string HashPassword(string password)
         {
-            return _context.UsersInfo.Any(e => e.UserId == id);
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hashedBytes);
+            }
         }
     }
 }
