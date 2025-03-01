@@ -1,0 +1,6 @@
+@MamuTutorial.Payment_HostAddress = http://localhost:5278
+
+GET {{MamuTutorial.Payment_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
