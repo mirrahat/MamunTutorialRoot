@@ -59,8 +59,11 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.7.1" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
+
+	<!-- ✅ Ensure "Services" and "MicServices" folders are included -->
 	<ItemGroup>
-	  <Folder Include="MicServices\" />
+		<Folder Include="MicServices\" />
+		<Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>
