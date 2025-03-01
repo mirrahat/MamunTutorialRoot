@@ -33,7 +33,7 @@ namespace MamunTutorial.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Payment>> GetPayment(int id)
+        public async Task<ActionResult<Payment>> GetPayment(Guid id)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace MamunTutorial.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePayment(int id, Payment payment)
+        public async Task<IActionResult> UpdatePayment(Guid id, Payment payment)
         {
             if (id != payment.Id)
             {

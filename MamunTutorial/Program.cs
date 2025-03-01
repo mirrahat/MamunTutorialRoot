@@ -1,146 +1,107 @@
-﻿using MamunTutorial.Data;
-using MamunTutorial.Services;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
+using MamunTutorial.Data;
 
-var builder = WebApplication.CreateBuilder(new WebApplicationOptions
-{
-    WebRootPath = "wwwroot"
-});
+var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Detect if running inside Docker
-var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-
-// ✅ Read ports from environment variables (useful for Docker & local)
-var httpPort = builder.Configuration["ASPNETCORE_HTTP_PORT"] ?? "5276";
-var httpsPort = builder.Configuration["ASPNETCORE_HTTPS_PORT"] ?? "7287";
-
-// ✅ Ensure the app runs on the correct ports
-builder.WebHost.ConfigureKestrel(options =>
-{
-    if (isDocker)
-    {
-        options.ListenAnyIP(8080); // Docker (containerized)
-    }
-    else
-    {
-        options.ListenAnyIP(int.Parse(httpPort)); // Use HTTP from config
-        options.ListenAnyIP(int.Parse(httpsPort), listenOptions => listenOptions.UseHttps()); // Use HTTPS from config
-    }
-});
-
-// ✅ Add services to the container
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add(new ProducesAttribute("application/json"));
-    options.Filters.Add(new ConsumesAttribute("application/json"));
-
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
-}).AddXmlSerializerFormatters();
-
+// Add services to the container
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-// ✅ Add DbContext with SQL Server
-builder.Services.AddDbContext<ApplicationDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// ✅ Configure CORS
-builder.Services.AddCors(options =>
+// Configure Swagger
+builder.Services.AddSwaggerGen(c =>
 {
-    options.AddDefaultPolicy(policy =>
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
-        policy.WithOrigins("http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        Title = "Mamun Tutorial API",
+        Version = "v1"
+    });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
     });
 });
 
-// ✅ Enable detailed security logs
-IdentityModelEventSource.ShowPII = true;
+// Configure Database
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ✅ Add authentication
-builder.Services.AddAuthentication(options =>
+// Configure CORS
+builder.Services.AddCors(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    // Ensure the JWT key is not null or empty
-    var jwtKey = builder.Configuration["Jwt:Key"];
-    if (string.IsNullOrEmpty(jwtKey))
+    options.AddPolicy("AllowAll", builder =>
     {
-        throw new InvalidOperationException("JWT Key is not configured in the application settings.");
-    }
-
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
-    };
-
-    options.Events = new JwtBearerEvents
-    {
-        OnAuthenticationFailed = context =>
-        {
-            Console.WriteLine($"Authentication failed: {context.Exception.Message}");
-            return Task.CompletedTask;
-        },
-        OnTokenValidated = context =>
-        {
-            Console.WriteLine("Token is valid.");
-            return Task.CompletedTask;
-        },
-        OnChallenge = context =>
-        {
-            Console.WriteLine($"Challenge triggered: {context.Error}, {context.ErrorDescription}");
-            return Task.CompletedTask;
-        }
-    };
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
 });
 
-// ✅ Add authorization
-builder.Services.AddAuthorization();
-
-// ✅ Register custom services
-builder.Services.AddScoped<AuthService>();
-builder.Services.AddTransient<IJwtService, JwtService>();
+// Configure Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
 var app = builder.Build();
 
-// ✅ Middleware setup
-if (!app.Environment.IsDevelopment())
+// Configure the HTTP request pipeline
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/error"); // Better error handling for production
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mamun Tutorial API v1");
+    });
 }
 
-app.UseStaticFiles();
-app.UseRouting();
-app.UseCors();
+// Global error handling
+app.UseExceptionHandler("/Error");
+app.UseHsts();
+
+app.UseHttpsRedirection();
+
+// Use CORS before auth
+app.UseCors("AllowAll");
+
+// Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
-// ✅ Add Swagger (API Documentation)
-app.UseSwagger();
-app.UseSwaggerUI();
-
-// ✅ Define routes
 app.MapControllers();
-app.MapGet("/", () => "Hello, Docker!").AllowAnonymous();
 
-// ✅ Run the application
 app.Run();
