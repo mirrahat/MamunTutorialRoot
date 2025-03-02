@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "8K87KoTjmackJOFdIuaZTVjUjiLH3CuuJQIMmGV1bwM=",
+  "Source": "MamunTutorial",
+  "BasePath": "_content/MamunTutorial",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MamunTutorial\\wwwroot",
+      "Source": "MamunTutorial",
+      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MamunTutorial\\wwwroot\\",
+      "BasePath": "_content/MamunTutorial",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
