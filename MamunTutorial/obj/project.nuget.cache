@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9/39Pio5kud/FcYiXv3c5TnpUqPlPgP+eJXltpnRiMnfgALLSyE2N4zTHhELNGD6z0fMCykCxtkMI3sxTVmSnA==",
+  "dgSpecHash": "dkwqPLxLPCHwoRldF4LTH4c7ZW45/0uuYXy1Tq3VIvfIIS01/jVhP8oJ7EaTS804ptniytiRHCctnSy9qZGCRA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\MamunTutorial\\MamunTutorial.csproj",
   "expectedPackageFiles": [
@@ -201,6 +201,7 @@
     "C:\\Users\\ASUS\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\rabbitmq.client\\7.1.1\\rabbitmq.client.7.1.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -287,6 +288,7 @@
     "C:\\Users\\ASUS\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\system.threading.tasks.dataflow\\7.0.0\\system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",

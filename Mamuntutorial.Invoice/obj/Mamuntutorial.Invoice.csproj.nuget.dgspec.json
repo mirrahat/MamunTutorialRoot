@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Payment\\Mamuntutorial.Payment.csproj": {}
+    "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Invoice\\Mamuntutorial.Invoice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Payment\\Mamuntutorial.Payment.csproj": {
+    "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Invoice\\Mamuntutorial.Invoice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Payment\\Mamuntutorial.Payment.csproj",
-        "projectName": "Mamuntutorial.Payment",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Payment\\Mamuntutorial.Payment.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Invoice\\Mamuntutorial.Invoice.csproj",
+        "projectName": "Mamuntutorial.Invoice",
+        "projectPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Invoice\\Mamuntutorial.Invoice.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Payment\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\source\\repos\\MamunTutorialRoot\\Mamuntutorial.Invoice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
