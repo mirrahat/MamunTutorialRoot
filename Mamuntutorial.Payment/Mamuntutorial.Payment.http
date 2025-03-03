@@ -1,6 +1,0 @@
-@Mamuntutorial.Payment_HostAddress = http://localhost:5290
-
-GET {{Mamuntutorial.Payment_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
